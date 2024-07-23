@@ -6,6 +6,7 @@ import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import blogData from "./assets/blog.json";
+import BlogPostPage from "./pages/BlogPostPage";
 
 export default function App() {
   const [blogs, setBlogs] = useState(blogData);
@@ -17,6 +18,7 @@ export default function App() {
           path="/"
           element={<HomePage blogs={blogs} setBlogs={setBlogs} />}
         />
+        <Route path="/blog/:blogId" element={<BlogPostPage blogs={blogs} />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<ErrorPage />} />
