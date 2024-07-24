@@ -18,25 +18,48 @@ export default function BlogPostPage({ blogs }) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-3xl font-extrabold text-gray-900 mb-4">
-        {blogPost.title}
-      </h1>
-      <h4 className="text-lg font-semibold text-gray-700 mb-4">
-        {blogPost.description}
-      </h4>
-      <img
-        src={blogPost.image}
-        alt={blogPost.title}
-        className="w-100 h-auto object-cover rounded-md mb-4"
-      />
-      <p className="text-gray-800 leading-relaxed">{blogPost.content}</p>
+    <div className="h-full px-96 mt-40">
+      <div className="flex gap-4 mb-8 items-center">
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          <img src={blogPost.authorIcon} />
+        </div>
+
+        <p>{blogPost.author}</p>
+        <div className="flex items-center gap-3">
+          <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
+          <p>{blogPost.date}</p>
+          <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
+          <p>{blogPost.readingTime}</p>
+        </div>
+      </div>
+      <div className="mb-10">
+        <h2 className="font-futura text-4xl font-bold mb-3">
+          {blogPost.title}
+        </h2>
+        <p className="text-2xl mb-4">{blogPost.description}</p>
+      </div>
+      <div className="w-full h-full mb-10">
+        <img
+          className="object-cover w-full h-full"
+          src={blogPost.image}
+          alt={blogPost.title}
+        />
+      </div>
+      <div className="mb-10 pb-10 border-b border-gray-400">
+        <p className="text-lg">{blogPost.content}</p>
+      </div>
+
       <div>
         {comments.map((comment) => {
           return (
-            <div key={comment.id}>
-              <p>{comment.comment}</p>
-              <p>{comment.commentAuthor}</p>
+            <div
+              key={comment.id}
+              className="rounded-lg border border-dark_grey p-4 mb-4"
+            >
+              <p className="text-gray-800 text-lg  font-medium mb-2">
+                {comment.comment}
+              </p>
+              <p className="text-gray-600 text-sm">{comment.commentAuthor}</p>
             </div>
           );
         })}

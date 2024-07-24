@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Avenir";
+  src:
+    local("Avenir"),
+    url("./assets/fonts/Avenir.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura";
+  src:
+    local("Futura"),
+    url("./assets/fonts/Futura.ttf") format("truetype");
+}
