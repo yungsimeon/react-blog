@@ -41,10 +41,14 @@
       "target": "api::tag.tag",
       "inversedBy": "blogTags"
     },
-    "comments": {
+    "blogTag": {
+      "type": "json"
+    },
+    "comment": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::comment.comment"
+      "target": "api::comment.comment",
+      "mappedBy": "blog"
     }
   }
 }

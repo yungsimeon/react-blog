@@ -806,7 +806,8 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     blogContent: Attribute.Blocks;
     blogDate: Attribute.Date;
     tags: Attribute.Relation<'api::blog.blog', 'manyToMany', 'api::tag.tag'>;
-    comments: Attribute.Relation<
+    blogTag: Attribute.JSON;
+    comment: Attribute.Relation<
       'api::blog.blog',
       'oneToMany',
       'api::comment.comment'
@@ -833,8 +834,14 @@ export interface ApiCommentComment extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    commentUser: Attribute.String;
-    commentText: Attribute.Text;
+    commentAuthor: Attribute.String;
+    commentContent: Attribute.Text;
+    commentCreatedAt: Attribute.DateTime;
+    blog: Attribute.Relation<
+      'api::comment.comment',
+      'manyToOne',
+      'api::blog.blog'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

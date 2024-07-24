@@ -12,11 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "commentUser": {
+    "commentAuthor": {
       "type": "string"
     },
-    "commentText": {
+    "commentContent": {
       "type": "text"
+    },
+    "commentCreatedAt": {
+      "type": "datetime"
+    },
+    "blog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog.blog",
+      "inversedBy": "comment"
     }
   }
 }
