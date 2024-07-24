@@ -14,11 +14,8 @@ export default function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage blogs={blogs} setBlogs={setBlogs} />}
-        />
-        <Route path="/blog/:blogId" element={<BlogPostPage blogs={blogs} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/:blogId" element={<BlogPostPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<ErrorPage />} />
