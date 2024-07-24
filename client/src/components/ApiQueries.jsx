@@ -33,7 +33,7 @@ export const fetchAllBlogPosts = () => {
 export const fetchBlogPostById = (id) => {
   return api
     .get(
-      `/blogs/${id}?&populate[blogImage][fields]&populate[tags][fields]&populate[comments][fields]]`
+      `/blogs/${id}?&populate[blogImage][fields]&populate[blogTag][fields]&populate[comment][fields]]`
     )
     .then((response) => {
       console.log(response);
@@ -44,8 +44,6 @@ export const fetchBlogPostById = (id) => {
       throw error;
     });
 };
-
-// Function to fetch comments
 
 // Function to create a new blog post
 export const createBlogPost = (newPost) => {
@@ -79,3 +77,22 @@ export const deleteBlogPost = (id) => {
       throw error;
     });
 };
+
+// Function to create a new comment
+export const createComment = (blogId, commentData) => {
+  return api
+    .post(`/comments`, {
+      ...commentData,
+      blog: blogId, // Assuming the backend expects a blog reference
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data.data;
+    })
+    .catch((error) => {
+      console.error("Error creating comment:", error);
+      throw error;
+    });
+};
+
+export { api, API_URL };

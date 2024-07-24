@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
+import CommentForm from "../components/commentForm";
 
 export default function BlogPostPage() {
   const { blogId } = useParams();
@@ -21,6 +22,11 @@ export default function BlogPostPage() {
       });
   }, [blogId]);
 
+  const handleCommentAdded = () => {
+    // Optionally, re-fetch the blog post to update comments
+    fetchBlogPostById(blogId).then(setBlogPost);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!blogPost) return <p>Blog post not found.</p>;
@@ -34,6 +40,7 @@ export default function BlogPostPage() {
         {blogPost.attributes.blogDescription}
       </h4>
       <p>{blogPost.attributes.blogContent[0].children[0].text}</p>
+
       {blogPost.attributes.blogImage && (
         <img
           src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
@@ -41,6 +48,46 @@ export default function BlogPostPage() {
           className="w-100 h-auto object-cover rounded-md mb-4"
         />
       )}
+
+      <div className="mt-4">
+        <h2 className="text-2xl font-semibold">Comments</h2>
+        {blogPost.attributes.comment.data.length > 0 ? (
+          blogPost.attributes.comment.data.map((comment) => (
+            <div
+              key={
+                comment.attributes.commentAuthor +
+                comment.attributes.commentCreatedAt
+              }
+              className="mb-2"
+            >
+              <p className="font-bold">{comment.attributes.commentAuthor}</p>
+              <p>{comment.attributes.commentContent}</p>
+              <p>{comment.attributes.commentCreatedAt}</p>
+            </div>
+          ))
+        ) : (
+          <p>No comments yet.</p>
+        )}
+      </div>
+
+      <CommentForm blogId={blogId} onCommentAdded={handleCommentAdded} />
+
+      <div className="mt-4">
+        <h2 className="text-xl font-semibold">Tags</h2>
+        {blogPost.attributes.blogTag &&
+        blogPost.attributes.blogTag.length > 0 ? (
+          blogPost.attributes.blogTag.map((tag, index) => (
+            <button
+              key={index + tag}
+              className="bg-blue-500 text-white py-1 px-2 rounded-md mr-2 mb-2"
+            >
+              {tag}
+            </button>
+          ))
+        ) : (
+          <p>No tags available.</p>
+        )}
+      </div>
     </div>
   );
 }
