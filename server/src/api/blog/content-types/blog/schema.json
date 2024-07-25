@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "blogs"
+    "displayName": "blogs",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,17 +19,36 @@
       "type": "string"
     },
     "blogImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "blogContent": {
       "type": "blocks"
+    },
+    "blogDate": {
+      "type": "date"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "blogTags"
+    },
+    "blogTag": {
+      "type": "json"
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "blog"
     }
   }
 }

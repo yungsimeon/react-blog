@@ -55,7 +55,7 @@ export default function HomePage() {
         </button>
       </div>
       <div className="mt-12">
-        <BlogList blogs={blogs} />
+        <BlogList />
       </div>
     </div>
   );

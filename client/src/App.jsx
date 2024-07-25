@@ -13,25 +13,14 @@ export default function App() {
   const [blogs, setBlogs] = useState(blogData);
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-grey">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage blogs={blogs} setBlogs={setBlogs} />}
-            />
-            <Route
-              path="/blog/:blogId"
-              element={<BlogPostPage blogs={blogs} />}
-            />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/:blogId" element={<BlogPostPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </Router>
   );
 }
