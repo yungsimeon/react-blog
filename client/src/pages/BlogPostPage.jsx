@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
-import CommentForm from "../components/commentForm";
+import CommentForm from "../components/CommentForm";
 
 export default function BlogPostPage() {
   const { blogId } = useParams();
@@ -32,25 +32,47 @@ export default function BlogPostPage() {
   if (!blogPost) return <p>Blog post not found.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-3xl font-extrabold text-gray-900 mb-4">
-        {blogPost.attributes.blogTitle}
-      </h1>
-      <h4 className="text-lg font-semibold text-gray-700 mb-4">
-        {blogPost.attributes.blogDescription}
-      </h4>
-      <p>{blogPost.attributes.blogContent[0].children[0].text}</p>
+    <div className="h-full px-96 mt-40">
+      <div className="flex gap-4 mb-8 items-center">
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          {blogPost.attributes.blogImage && (
+            <img
+              src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
+              alt={blogPost.attributes.blogTitle}
+            />
+          )}
+        </div>
 
-      {blogPost.attributes.blogImage && (
-        <img
-          src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
-          alt={blogPost.attributes.blogTitle}
-          className="w-100 h-auto object-cover rounded-md mb-4"
-        />
-      )}
+        <p>Author</p>
+        <div className="flex items-center gap-3">
+          <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
+          <p>{blogPost.attributes.createdAt}</p>
+          <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
+          <p>ReadingTime</p>
+        </div>
+      </div>
+      <div className="mb-10">
+        <h2 className="font-futura text-4xl font-bold mb-3">
+          {blogPost.attributes.blogTitle}
+        </h2>
+        <p className="text-2xl mb-4">{blogPost.attributes.blogDescription}</p>
+      </div>
+      <div className="w-full h-full mb-10">
+        {blogPost.attributes.blogImage && (
+          <img
+            src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
+            alt={blogPost.attributes.blogTitle}
+          />
+        )}
+      </div>
+      <div className="mb-10 pb-10 border-b border-gray-400">
+        <p className="text-lg">
+          {blogPost.attributes.blogContent[0].children[0].text}
+        </p>
+      </div>
 
-      <div className="mt-4">
-        <h2 className="text-2xl font-semibold">Comments</h2>
+      <div>
+        <p>{blogPost.attributes.comment.data.length} comments</p>
         {blogPost.attributes.comment.data.length > 0 ? (
           blogPost.attributes.comment.data.map((comment) => (
             <div

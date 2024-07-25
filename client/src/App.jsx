@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import blogData from "./assets/blog.json";
 import BlogPostPage from "./pages/BlogPostPage";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [blogs, setBlogs] = useState(blogData);

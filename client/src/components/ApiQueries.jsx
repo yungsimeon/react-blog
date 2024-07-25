@@ -18,7 +18,7 @@ const api = axios.create({
 // Function to fetch all blog posts
 export const fetchAllBlogPosts = () => {
   return api
-    .get("/blogs?&populate[blogImage][fields]")
+    .get("/blogs?&populate[blogImage][fields]&populate[comment][fields]")
     .then((response) => {
       console.log(response);
       return response.data.data;
@@ -33,7 +33,8 @@ export const fetchAllBlogPosts = () => {
 export const fetchBlogPostById = (id) => {
   return api
     .get(
-      `/blogs/${id}?&populate[blogImage][fields]&populate[blogTag][fields]&populate[comment][fields]]`
+      `/blogs/${id}?&populate[blogImage][fields]&populate[blogTag][fields]&populate[comment][fields]]
+      `
     )
     .then((response) => {
       console.log(response);
