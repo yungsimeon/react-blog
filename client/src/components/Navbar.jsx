@@ -8,6 +8,11 @@ export default function Navbar() {
           to="/"
           className="text-white text-lg font-semibold hover:text-gray-400"
         >
+          <img
+            src="https://www.shutterstock.com/image-vector/vinnytsia-ukraine-may-7-2023-260nw-2299584411.jpg"
+            alt="Logo"
+            className="h-8 ml-[-45px]"
+          />
           Home
         </NavLink>
 

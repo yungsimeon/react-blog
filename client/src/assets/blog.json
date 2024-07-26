@@ -5,16 +5,16 @@
     "description": "A comprehensive guide to learning React.js.",
     "date": "2024-07-22",
     "image": "https://picsum.photos/seed/picsum/200/300",
-    "content": "<p>React is a popular JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.</p><p>To get started with React, you'll need to have a good understanding of JavaScript. React allows you to build single-page applications with a component-based architecture.</p><p>Some key concepts in React include JSX, components, props, state, and lifecycle methods.</p>"
+    "content": "React is a popular JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.</p><p>To get started with React, you'll need to have a good understanding of JavaScript. React allows you to build single-page applications with a component-based architecture.</p><p>Some key concepts in React include JSX, components, props, state, and lifecycle methods."
   },
-  
+
   {
     "id": 2,
     "title": "Understanding JavaScript Closures",
     "description": "An in-depth look at closures in JavaScript and their use cases.",
     "date": "2024-07-21",
     "image": "https://picsum.photos/200/300",
-    "content": "<p>Closures are a fundamental concept in JavaScript that allow a function to access variables from its outer scope even after that function has finished executing.</p><p>Closures are commonly used in JavaScript for data encapsulation and creating private variables.</p><p>Understanding closures is crucial for mastering JavaScript and writing more efficient and maintainable code.</p>"
+    "content": "Closures are a fundamental concept in JavaScript that allow a function to access variables from its outer scope even after that function has finished executing.</p><p>Closures are commonly used in JavaScript for data encapsulation and creating private variables.</p><p>Understanding closures is crucial for mastering JavaScript and writing more efficient and maintainable code."
   },
   {
     "id": 3,
@@ -22,6 +22,6 @@
     "description": "Learn the basics of CSS Grid Layout for creating responsive designs.",
     "date": "2024-07-20",
     "image": "https://picsum.photos/id/237/200/300",
-    "content": "<p>CSS Grid Layout is a two-dimensional layout system for the web. It allows you to create complex and responsive grid-based layouts with ease.</p><p>The Grid Layout system provides a way to create rows and columns that adapt to different screen sizes and resolutions.</p><p>By mastering CSS Grid, you can build more flexible and scalable web designs.</p>"
+    "content": "CSS Grid Layout is a two-dimensional layout system for the web. It allows you to create complex and responsive grid-based layouts with ease.</p><p>The Grid Layout system provides a way to create rows and columns that adapt to different screen sizes and resolutions.</p><p>By mastering CSS Grid, you can build more flexible and scalable web designs."
   }
 ]

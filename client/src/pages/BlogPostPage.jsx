@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
+import LikeButton from "../components/LikeButton";
 import { useState } from "react";
 
 export default function BlogPostPage({ blogs }) {
@@ -42,6 +43,7 @@ export default function BlogPostPage({ blogs }) {
         })}
       </div>
       <CommentForm addComment={addComment} />
+      <LikeButton />
     </div>
   );
 }
