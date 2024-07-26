@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createComment } from "../components/ApiQueries";
+import { createComment } from "./ApiQueries";
 
 export default function CommentForm({ blogId, onCommentAdded }) {
   const [commentAuthor, setCommentAuthor] = useState("");
@@ -13,9 +13,10 @@ export default function CommentForm({ blogId, onCommentAdded }) {
         data: {
           commentAuthor,
           commentContent,
+          blog: +blogId,
         },
       };
-      await createComment(blogId, commentData);
+      await createComment(commentData);
       onCommentAdded(); // Refresh comments list
       setCommentAuthor("");
       setCommentContent("");

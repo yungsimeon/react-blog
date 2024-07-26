@@ -18,7 +18,9 @@ const api = axios.create({
 // Function to fetch all blog posts
 export const fetchAllBlogPosts = () => {
   return api
-    .get("/blogs?&populate[blogImage][fields]&populate[comment][fields]")
+    .get(
+      "/blogs?&populate[blogImage][fields]=url&populate[comments][fields]=*&populate[blogIconImg][fields]=url"
+    )
     .then((response) => {
       console.log(response);
       return response.data.data;
@@ -33,7 +35,7 @@ export const fetchAllBlogPosts = () => {
 export const fetchBlogPostById = (id) => {
   return api
     .get(
-      `/blogs/${id}?&populate[blogImage][fields]&populate[blogTag][fields]&populate[comment][fields]]
+      `/blogs/${id}?&populate[blogImage][fields]=url&populate[blogTag][fields]=*&populate[comments][fields]=*&populate[blogIconImg][fields]=url]
       `
     )
     .then((response) => {
@@ -46,45 +48,12 @@ export const fetchBlogPostById = (id) => {
     });
 };
 
-// Function to create a new blog post
-export const createBlogPost = (newPost) => {
-  return api
-    .post("/blogs", newPost)
-    .then((response) => response.data.data)
-    .catch((error) => {
-      console.error("Error creating blog post:", error);
-      throw error;
-    });
-};
-
-// Function to update a blog post
-export const updateBlogPost = (id, updatedPost) => {
-  return api
-    .put(`/blogs/${id}`, updatedPost)
-    .then((response) => response.data.data)
-    .catch((error) => {
-      console.error(`Error updating blog post with ID ${id}:`, error);
-      throw error;
-    });
-};
-
-// Function to delete a blog post
-export const deleteBlogPost = (id) => {
-  return api
-    .delete(`/blogs/${id}`)
-    .then((response) => response.data)
-    .catch((error) => {
-      console.error(`Error deleting blog post with ID ${id}:`, error);
-      throw error;
-    });
-};
-
 // Function to create a new comment
-export const createComment = (blogId, commentData) => {
+export const createComment = (commentData) => {
+  console.log(commentData);
   return api
     .post(`/comments`, {
       ...commentData,
-      blog: blogId, // Assuming the backend expects a blog reference
     })
     .then((response) => {
       console.log(response);
@@ -92,6 +61,33 @@ export const createComment = (blogId, commentData) => {
     })
     .catch((error) => {
       console.error("Error creating comment:", error);
+      throw error;
+    });
+};
+
+// Get the like count for a specific blog post
+export const getLikeCount = (blogId) => {
+  return api
+    .get(`/blogs/${blogId}`)
+    .then((response) => {
+      console.log(response.data.likes);
+      return response.data.data.attributes.likes;
+    })
+    .catch((error) => {
+      console.error("Error fetching like count:", error);
+      throw error;
+    });
+};
+
+// Update the like count for a specific blog post
+export const updateLikeCount = (blogId, likes) => {
+  return api
+    .put(`/blogs/${blogId}`, { data: { likes } })
+    .then((response) => {
+      return response.data.data.attributes.likes;
+    })
+    .catch((error) => {
+      console.error("Error updating like count:", error);
       throw error;
     });
 };

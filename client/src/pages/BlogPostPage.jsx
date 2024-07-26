@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
 import CommentForm from "../components/CommentForm";
+import LikeButton from "../components/LikeButton";
 
 export default function BlogPostPage() {
   const { blogId } = useParams();
@@ -13,6 +14,7 @@ export default function BlogPostPage() {
   useEffect(() => {
     fetchBlogPostById(blogId)
       .then((data) => {
+        console.log("dataaa....", data);
         setBlogPost(data);
         setLoading(false);
       })
@@ -35,15 +37,15 @@ export default function BlogPostPage() {
     <div className="h-full px-96 mt-40">
       <div className="flex gap-4 mb-8 items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden">
-          {blogPost.attributes.blogImage && (
+          {blogPost.attributes.blogIconImg && (
             <img
-              src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
-              alt={blogPost.attributes.blogTitle}
+              src={`${API_URL}${blogPost.attributes.blogIconImg.data.attributes.url}`}
+              alt={blogPost.attributes.blogAuthor}
             />
           )}
         </div>
 
-        <p>Author</p>
+        <p>{blogPost.attributes.blogAuthor}</p>
         <div className="flex items-center gap-3">
           <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
           <p>{blogPost.attributes.createdAt}</p>
@@ -71,10 +73,14 @@ export default function BlogPostPage() {
         </p>
       </div>
 
+      <div className="mb-10 pb-10 border-b border-gray-400">
+        <LikeButton blogId={blogId} />
+      </div>
+
       <div>
-        <p>{blogPost.attributes.comment.data.length} comments</p>
-        {blogPost.attributes.comment.data.length > 0 ? (
-          blogPost.attributes.comment.data.map((comment) => (
+        <p>{blogPost.attributes.comments.data.length} comments</p>
+        {blogPost.attributes.comments.data.length > 0 ? (
+          blogPost.attributes.comments.data.map((comment) => (
             <div
               key={
                 comment.attributes.commentAuthor +
