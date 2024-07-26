@@ -6,11 +6,13 @@ import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import blogData from "./assets/blog.json";
+import teamData from "./assets/team.json";
 import BlogPostPage from "./pages/BlogPostPage";
 import Footer from "./components/Footer";
 
 export default function App() {
   const [blogs, setBlogs] = useState(blogData);
+  const [members, setMembers] = useState(teamData);
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-grey">
@@ -26,7 +28,7 @@ export default function App() {
               element={<BlogPostPage blogs={blogs} />}
             />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage members={members} />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </main>

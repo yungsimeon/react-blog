@@ -10,9 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@heroicons/react": "^2.1.5",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
+    "@material-tailwind/react": "^2.1.9",
+    "@mui/joy": "^5.0.0-beta.48",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1"
+    "react-router-dom": "^6.25.1",
+    "react-social-icons": "^6.17.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
