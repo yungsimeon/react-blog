@@ -3,6 +3,7 @@ import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
 import CommentForm from "../components/CommentForm";
 
+
 export default function BlogPostPage() {
   const { blogId } = useParams();
   const [blogPost, setBlogPost] = useState(null);
@@ -110,6 +111,7 @@ export default function BlogPostPage() {
           <p>No tags available.</p>
         )}
       </div>
+
     </div>
   );
 }

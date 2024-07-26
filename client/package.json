@@ -10,7 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+
+    "@heroicons/react": "^2.1.5",
     "@lottiefiles/react-lottie-player": "^3.5.4",
+    "axios": "^1.7.2",
+
+    "@lottiefiles/react-lottie-player": "^3.5.4",
+
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1",
