@@ -1,48 +1,70 @@
 import { useState } from "react";
+import { createComment } from "./ApiQueries";
 
-export default function CommentForm({ addComment }) {
-  const [comment, setComment] = useState("");
+export default function CommentForm({ blogId, onCommentAdded }) {
   const [commentAuthor, setCommentAuthor] = useState("");
+  const [commentContent, setCommentContent] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addComment(comment, commentAuthor);
-    setComment("");
-    setCommentAuthor("");
-  };
-
-  const handleChange = (e, setState) => {
-    setState(e.target.value);
+    try {
+      const commentData = {
+        data: {
+          commentAuthor,
+          commentContent,
+          blog: +blogId,
+        },
+      };
+      await createComment(commentData);
+      onCommentAdded(); // Refresh comments list
+      setCommentAuthor("");
+      setCommentContent("");
+    } catch (err) {
+      setError("Failed to submit comment");
+    }
   };
 
   return (
     <div className="p-6 mb-20">
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <textarea
-            className="w-full bg-grey p-2 border border-dark_grey rounded-md focus:outline-none "
+        <div className="mb-4">
+          <label
+            htmlFor="commentAuthor"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Name
+          </label>
+          <input
             type="text"
-            name="comment"
-            placeholder="Write a comment..."
-            value={comment}
-            onChange={(e) => handleChange(e, setComment)}
+            id="commentAuthor"
+            value={commentAuthor}
+            onChange={(e) => setCommentAuthor(e.target.value)}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <input
-            className="w-full bg-grey p-2 border border-dark_grey rounded-md focus:outline-none "
-            type="text"
-            name="commentAuthor"
-            placeholder="Your name..."
-            value={commentAuthor}
-            onChange={(e) => handleChange(e, setCommentAuthor)}
+        <div className="mb-4">
+          <label
+            htmlFor="commentContent"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Comment
+          </label>
+          <textarea
+            id="commentContent"
+            value={commentContent}
+            onChange={(e) => setCommentContent(e.target.value)}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="4"
           />
         </div>
         <button
-          className="bg-dark_grey text-white px-4 py-2 rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
           type="submit"
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          Send
+          Submit
         </button>
       </form>
     </div>
