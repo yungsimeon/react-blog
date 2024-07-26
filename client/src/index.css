@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.aboutDiv {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgAboutPage {
+  width: 40%;
+  border-radius: 15%;
+}
+
+.aboutH1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+  margin-top: 30px;
+  color: blue;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  color: #4a5568;
+}
+
+.contactDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.contactDiv .contactItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  transition:
+    color 0.3s ease,
+    padding-left 0.3s ease;
+}
+
+.contactDiv .contactItem:hover {
+  color: blue;
+  padding-left: 40px;
+}
