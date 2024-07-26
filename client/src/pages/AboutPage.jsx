@@ -1,8 +1,8 @@
-import {
-  MapPinIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-} from "@heroicons/react/24/outline";
+// import {
+//   MapPinIcon,
+//   PhoneIcon,
+//   EnvelopeIcon,
+// } from "@heroicons/react/24/outline";
 
 export default function AboutPage() {
   return (
@@ -16,15 +16,15 @@ export default function AboutPage() {
         <h1 className="aboutH1">We would love to hear from you!</h1>
         <div className="contactInfo">
           <div className="contactItem">
-            <MapPinIcon className="icon" />
+            {/* <MapPinIcon className="icon" /> */}
             <span>123 Main St, Anytown, USA</span>
           </div>
           <div className="contactItem">
-            <PhoneIcon className="icon" />
+            {/* <PhoneIcon className="icon" /> */}
             <span>(123) 456-7890</span>
           </div>
           <div className="contactItem">
-            <EnvelopeIcon className="icon" />
+            {/* <EnvelopeIcon className="icon" /> */}
             <span>info@example.com</span>
           </div>
         </div>

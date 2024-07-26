@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blog_comment_blog_comments",
+  "info": {
+    "displayName": "blogComment",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "commentText": {
+      "type": "string"
+    },
+    "commentUser": {
+      "type": "string"
+    }
+  }
+}
