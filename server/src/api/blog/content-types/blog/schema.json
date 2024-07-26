@@ -32,8 +32,25 @@
     "blogContent": {
       "type": "blocks"
     },
-    "blogTags": {
-      "type": "string"
+
+    "blogDate": {
+      "type": "date"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "blogTags"
+    },
+    "blogTag": {
+      "type": "json"
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "blog"
+
     }
   }
 }

@@ -4,5 +4,8 @@
     "target": "ES2021",
     "checkJs": true,
     "allowJs": true
+  },
+  "dependencies": {
+    "axios": "^1.7.2"
   }
 }

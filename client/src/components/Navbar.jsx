@@ -1,31 +1,55 @@
-import { NavLink } from "react-router-dom";
+import navAnimation from "../assets/icon.json";
 
+import { Player } from "@lottiefiles/react-lottie-player";
+import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-[#fff] 800 p-3 shadow-lg sticky z-10 top-0 ">
       <div className="container mx-auto flex justify-between items-center">
-        <NavLink
-          to="/"
-          className="text-white text-lg font-semibold hover:text-gray-400"
-        >
-          <img
-            src="https://www.shutterstock.com/image-vector/vinnytsia-ukraine-may-7-2023-260nw-2299584411.jpg"
-            alt="Logo"
-            className="h-8 ml-[-45px]"
+
+        <div>
+          <Player
+            autoplay
+            loop
+            src={navAnimation}
+            style={{ height: "100px", width: "100px" }}
           />
-          Home
-        </NavLink>
+        </div>
+        <div className="flex gap-10 text-black text-lg">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "relative text-gray-500 after:absolute after:left-0 after:bottom-[-0.5rem] after:w-full after:h-[3px] after:bg-gray-500"
+                : "hover:text-gray-500"
+            }
+          >
+            Home
+          </NavLink>
 
-        <NavLink to="/about" className="text-white text-lg hover:text-gray-400">
-          About
-        </NavLink>
 
-        <NavLink
-          to="/contact"
-          className="text-white text-lg hover:text-gray-400"
-        >
-          Contact
-        </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive
+                ? "relative text-gray-500 after:absolute after:left-0 after:bottom-[-0.5rem] after:w-full after:h-[3px] after:bg-gray-500"
+                : "hover:text-gray-500"
+            }
+          >
+            About
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive
+                ? "relative text-gray-500 after:absolute after:left-0 after:bottom-[-0.5rem] after:w-full after:h-[3px] after:bg-gray-500"
+                : "hover:text-gray-500"
+            }
+          >
+            Contact
+          </NavLink>
+        </div>
       </div>
     </nav>
   );
