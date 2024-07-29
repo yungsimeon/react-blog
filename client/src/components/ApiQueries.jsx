@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "http://localhost:1337/api";
 // process.env.REACT_APP_API_URL || "http://localhost:1337";
 const API_TOKEN =
-  "e1e034a372bca5fea8ed2d3382b2573a4d2cef5983c61d975542486c78fc6bd20b03ab4e818c75c8996233dcde9153c39a18bb6e4d8988cd872da54312b27a05e4642d1a4cf5c63db9970bab909a87f3da8eb8d0d72ebc790d6635f8a177b72c651368d06849e1c8e2bcc63d1df07d83e559e65d68f4fad2751a866d2b77b173";
+  "da965f1fbd471d87ccad9fa920c33d06a1edac3d36643ad6c28af2f275394d41b1a1714f3e13172fc0c69823de55dab8fa663e76215ed4364b5948e5a3fc55820ad10b1e6b9ec42ca31cf96189fa955a3c986f90e86825cb1569bacfd5b045150282cdfa9c79f239fbdc3be048aa76d9090c6097f431a1a2403110672fab464f";
 //process.env.REACT_APP_API_TOKEN;
 
 // Create an Axios instance with default configurations

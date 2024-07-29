@@ -28,43 +28,33 @@ export default function CommentForm({ blogId, onCommentAdded }) {
   return (
     <div className="p-6 mb-20">
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="mb-4">
-          <label
-            htmlFor="commentAuthor"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Name
-          </label>
-          <input
+        <div>
+          <textarea
+            className="w-full bg-grey p-2 border border-dark_grey rounded-md focus:outline-none "
             type="text"
-            id="commentAuthor"
-            value={commentAuthor}
-            onChange={(e) => setCommentAuthor(e.target.value)}
+            name="comment"
+            placeholder="Write a comment..."
+            value={commentContent}
             required
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setCommentContent(e.target.value)}
           />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="commentContent"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Comment
-          </label>
-          <textarea
-            id="commentContent"
-            value={commentContent}
-            onChange={(e) => setCommentContent(e.target.value)}
+        <div>
+          <input
+            className="w-full bg-grey p-2 border border-dark_grey rounded-md focus:outline-none "
+            type="text"
+            name="commentAuthor"
+            placeholder="Your name..."
+            value={commentAuthor}
             required
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows="4"
+            onChange={(e) => setCommentAuthor(e.target.value)}
           />
         </div>
         <button
+          className="bg-dark_grey text-white px-4 py-2 rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
           type="submit"
-          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          Submit
+          Send
         </button>
       </form>
     </div>

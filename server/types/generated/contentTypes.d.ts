@@ -809,12 +809,12 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     blogTag: Attribute.JSON;
     blogAuthor: Attribute.String;
     blogIconImg: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    likes: Attribute.Integer;
     comments: Attribute.Relation<
       'api::blog.blog',
       'oneToMany',
       'api::comment.comment'
     >;
+    blogReadingTime: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

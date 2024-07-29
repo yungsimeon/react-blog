@@ -1,6 +1,12 @@
 export default function BlogItem({ blog }) {
   const API_URL = "http://localhost:1337";
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
   return (
     <div className="flex shadow-lg rounded-lg h-96 mb-14">
       <div className="w-1/2 h-full">
@@ -23,9 +29,9 @@ export default function BlogItem({ blog }) {
           <div>
             <p>{blog.attributes.blogAuthor}</p>
             <div className="flex items-center gap-3">
-              <p>{blog.attributes.createdAt}</p>
+              <p>{formatDate(blog.attributes.createdAt)}</p>
               <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
-              <p>ReadingTime</p>
+              <p>{blog.attributes.blogReadingTime}</p>
             </div>
           </div>
         </div>

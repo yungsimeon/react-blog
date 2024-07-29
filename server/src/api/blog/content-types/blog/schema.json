@@ -58,14 +58,14 @@
         "audios"
       ]
     },
-    "likes": {
-      "type": "integer"
-    },
     "comments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "blog"
+    },
+    "blogReadingTime": {
+      "type": "string"
     }
   }
 }
