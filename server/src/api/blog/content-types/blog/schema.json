@@ -45,11 +45,29 @@
     "blogTag": {
       "type": "json"
     },
-    "comment": {
+    "blogAuthor": {
+      "type": "string"
+    },
+    "blogIconImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "comments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "blog"
+
+    },
+    "blogReadingTime": {
+      "type": "string"
 
     }
   }

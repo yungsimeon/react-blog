@@ -1,18 +1,28 @@
 import { useState } from "react";
+import { createComment } from "./ApiQueries";
 
-export default function CommentForm({ addComment }) {
-  const [comment, setComment] = useState("");
+export default function CommentForm({ blogId, onCommentAdded }) {
   const [commentAuthor, setCommentAuthor] = useState("");
+  const [commentContent, setCommentContent] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addComment(comment, commentAuthor);
-    setComment("");
-    setCommentAuthor("");
-  };
-
-  const handleChange = (e, setState) => {
-    setState(e.target.value);
+    try {
+      const commentData = {
+        data: {
+          commentAuthor,
+          commentContent,
+          blog: +blogId,
+        },
+      };
+      await createComment(commentData);
+      onCommentAdded(); // Refresh comments list
+      setCommentAuthor("");
+      setCommentContent("");
+    } catch (err) {
+      setError("Failed to submit comment");
+    }
   };
 
   return (
@@ -24,8 +34,9 @@ export default function CommentForm({ addComment }) {
             type="text"
             name="comment"
             placeholder="Write a comment..."
-            value={comment}
-            onChange={(e) => handleChange(e, setComment)}
+            value={commentContent}
+            required
+            onChange={(e) => setCommentContent(e.target.value)}
           />
         </div>
         <div>
@@ -35,7 +46,8 @@ export default function CommentForm({ addComment }) {
             name="commentAuthor"
             placeholder="Your name..."
             value={commentAuthor}
-            onChange={(e) => handleChange(e, setCommentAuthor)}
+            required
+            onChange={(e) => setCommentAuthor(e.target.value)}
           />
         </div>
         <button

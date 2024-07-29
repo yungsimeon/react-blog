@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@lottiefiles/react-lottie-player": "^3.5.4",
-    "react-social-icons": "^6.17.0"
+    "axios": "^1.7.2"
   }
 }
