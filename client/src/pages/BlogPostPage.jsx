@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
 import CommentForm from "../components/CommentForm";
+import RelatedPosts from "../components/RelatedPosts";
 
-
-export default function BlogPostPage() {
+export default function BlogPostPage({ relatedPosts }) {
   const { blogId } = useParams();
   const [blogPost, setBlogPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -106,6 +106,7 @@ export default function BlogPostPage() {
 
       <CommentForm blogId={blogId} onCommentAdded={handleCommentAdded} />
 
+      <RelatedPosts />
     </div>
   );
 }
