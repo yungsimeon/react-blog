@@ -11,9 +11,16 @@ export default function BlogPostPage() {
   const [error, setError] = useState(null);
   const API_URL = "http://localhost:1337";
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
   useEffect(() => {
     fetchBlogPostById(blogId)
       .then((data) => {
+        console.log("dataaa....", data);
         setBlogPost(data);
         setLoading(false);
       })
@@ -36,20 +43,21 @@ export default function BlogPostPage() {
     <div className="h-full px-96 mt-40">
       <div className="flex gap-4 mb-8 items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden">
-          {blogPost.attributes.blogImage && (
+          {blogPost.attributes.blogIconImg && (
             <img
-              src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
-              alt={blogPost.attributes.blogTitle}
+              src={`${API_URL}${blogPost.attributes.blogIconImg.data.attributes.url}`}
+              alt={blogPost.attributes.blogAuthor}
             />
           )}
         </div>
 
-        <p>Author</p>
+        <p>{blogPost.attributes.blogAuthor}</p>
         <div className="flex items-center gap-3">
           <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
-          <p>{blogPost.attributes.createdAt}</p>
+
+          <p>{formatDate(blogPost.attributes.createdAt)}</p>
           <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
-          <p>ReadingTime</p>
+          <p>{blogPost.attributes.blogReadingTime}</p>
         </div>
       </div>
       <div className="mb-10">
@@ -73,19 +81,22 @@ export default function BlogPostPage() {
       </div>
 
       <div>
-        <p>{blogPost.attributes.comment.data.length} comments</p>
-        {blogPost.attributes.comment.data.length > 0 ? (
-          blogPost.attributes.comment.data.map((comment) => (
+        <p className="text-xl font-semibold mb-10">
+          {blogPost.attributes.comments.data.length} comments
+        </p>
+        {blogPost.attributes.comments.data.length > 0 ? (
+          blogPost.attributes.comments.data.map((comment) => (
             <div
               key={
                 comment.attributes.commentAuthor +
                 comment.attributes.commentCreatedAt
               }
-              className="mb-2"
+              className="mb-10"
             >
-              <p className="font-bold">{comment.attributes.commentAuthor}</p>
+              <p className="font-semibold">
+                {comment.attributes.commentAuthor}
+              </p>
               <p>{comment.attributes.commentContent}</p>
-              <p>{comment.attributes.commentCreatedAt}</p>
             </div>
           ))
         ) : (
@@ -94,23 +105,6 @@ export default function BlogPostPage() {
       </div>
 
       <CommentForm blogId={blogId} onCommentAdded={handleCommentAdded} />
-
-      <div className="mt-4">
-        <h2 className="text-xl font-semibold">Tags</h2>
-        {blogPost.attributes.blogTag &&
-        blogPost.attributes.blogTag.length > 0 ? (
-          blogPost.attributes.blogTag.map((tag, index) => (
-            <button
-              key={index + tag}
-              className="bg-blue-500 text-white py-1 px-2 rounded-md mr-2 mb-2"
-            >
-              {tag}
-            </button>
-          ))
-        ) : (
-          <p>No tags available.</p>
-        )}
-      </div>
 
     </div>
   );

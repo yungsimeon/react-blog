@@ -807,11 +807,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     blogDate: Attribute.Date;
     tags: Attribute.Relation<'api::blog.blog', 'manyToMany', 'api::tag.tag'>;
     blogTag: Attribute.JSON;
-    comment: Attribute.Relation<
+    blogAuthor: Attribute.String;
+    blogIconImg: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    comments: Attribute.Relation<
       'api::blog.blog',
       'oneToMany',
       'api::comment.comment'
     >;
+    blogReadingTime: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

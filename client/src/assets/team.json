@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Sophie",
+    "role": "Backend",
+    "email": "sophie@gmail.com",
+    "img": "https://ca.slack-edge.com/T075V6BQBRD-U076V8TKN8J-ge439412b006-512",
+    "github": "https://github.com/SophieCtrl",
+    "linkedin": "https://www.linkedin.com/in/arsen-khachatryan-4"
+  },
+  {
+    "id": 2,
+    "name": "Simon",
+    "role": "Frontend",
+    "email": "simonlouis.schubert@gmail.com",
+    "img": "https://ca.slack-edge.com/T075V6BQBRD-U0788CFEPC0-66674b5c5857-512",
+    "github": "https://github.com/yungsimeon",
+    "linkedin": "https://www.linkedin.com/in/simon-schubert-b7a372261/"
+  },
+  {
+    "id": 3,
+    "name": "Arsen",
+    "role": "Frontend",
+    "email": "arsen.khachatryan@gmail.com",
+    "img": "https://ca.slack-edge.com/T075V6BQBRD-U076NKNP25U-6550b16253c6-512",
+    "github": "https://github.com/Arsen-yan",
+    "linkedin": "https://www.linkedin.com/in/arsen-khachatryan-4"
+  }
+]

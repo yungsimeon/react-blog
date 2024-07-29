@@ -8,9 +8,13 @@ export default function Footer() {
     <footer className="bg-white shadow-top text-black py-4  w-full flex justify-between items-center px-6">
       <span className="flex-grow text-center">&copy; 2024</span>
       <div className="flex space-x-4">
-        <SocialIcon bgColor="#333" url="https://x.com" />
-        <SocialIcon bgColor="#333" url="https://instagram.com" />
-        <SocialIcon bgColor="#333" url="https://linkedin.com" />
+        <SocialIcon bgColor="#333" target="_blank" url="https://x.com" />
+        <SocialIcon
+          bgColor="#333"
+          target="_blank"
+          url="https://instagram.com"
+        />
+        <SocialIcon bgColor="#333" target="_blank" url="https://linkedin.com" />
       </div>
     </footer>
   );
