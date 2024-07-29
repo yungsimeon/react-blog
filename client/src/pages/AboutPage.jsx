@@ -1,3 +1,4 @@
+
 import { Typography } from "@material-tailwind/react";
 import TeamList from "../components/TeamList";
 
@@ -43,5 +44,6 @@ export default function AboutPage({ members }) {
         </div>
       </div>
     </section>
+
   );
 }

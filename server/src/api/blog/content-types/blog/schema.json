@@ -32,6 +32,7 @@
     "blogContent": {
       "type": "blocks"
     },
+
     "blogDate": {
       "type": "date"
     },
@@ -63,9 +64,11 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "blog"
+
     },
     "blogReadingTime": {
       "type": "string"
+
     }
   }
 }
