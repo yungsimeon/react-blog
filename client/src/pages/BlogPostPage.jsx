@@ -6,7 +6,7 @@ import RelatedPosts from "../components/RelatedPosts";
 
 export default function BlogPostPage() {
   const { blogId } = useParams();
-  const [blogPost, setBlogPost] = useState(null);
+  const [blogPost, setBlogPost] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const API_URL = "http://localhost:1337";
