@@ -43,7 +43,11 @@ export default function RelatedPosts() {
         {relatedPosts.length > 0 ? (
           relatedPosts.map((post) => (
             <div key={post.id} className="mb-4 w-1/3">
-              <Link to={`/blog/${post.id}`} key={post.id}>
+              <Link
+                to={`/blog/${post.id}`}
+                key={post.id}
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 <img
                   className="w-full h-full object-cover rounded-lg mb-5"
                   src={`${API_URL}${post.attributes.blogImage.data.attributes.url}`}

@@ -92,10 +92,12 @@ export default function BlogPostPage() {
               }
               className="mb-10"
             >
-              <p className="font-semibold">
-                {comment.attributes.commentAuthor}
+              <p>
+                {comment.attributes.commentContent} -{" "}
+                <span className="italic">
+                  {comment.attributes.commentAuthor}{" "}
+                </span>
               </p>
-              <p>{comment.attributes.commentContent}</p>
             </div>
           ))
         ) : (
