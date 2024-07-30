@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchAllBlogPosts } from "./ApiQueries"; // Update with the actual path
+import { fetchAllBlogPosts } from "./ApiQueries";
 
 export default function RelatedPosts() {
   const API_URL = "http://localhost:1337";
@@ -43,10 +43,7 @@ export default function RelatedPosts() {
         {relatedPosts.length > 0 ? (
           relatedPosts.map((post) => (
             <div key={post.id} className="mb-4 w-1/3">
-              <Link
-                to={`/blog/${post.id}`} // Navigate to the specific blog post
-                key={post.id}
-              >
+              <Link to={`/blog/${post.id}`} key={post.id}>
                 <img
                   className="w-full h-full object-cover rounded-lg mb-5"
                   src={`${API_URL}${post.attributes.blogImage.data.attributes.url}`}

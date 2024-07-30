@@ -1,10 +1,10 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchBlogPostById } from "../components/ApiQueries";
 import { useState, useEffect } from "react";
 import CommentForm from "../components/CommentForm";
 import RelatedPosts from "../components/RelatedPosts";
 
-export default function BlogPostPage({ relatedPosts }) {
+export default function BlogPostPage() {
   const { blogId } = useParams();
   const [blogPost, setBlogPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,6 @@ export default function BlogPostPage({ relatedPosts }) {
   useEffect(() => {
     fetchBlogPostById(blogId)
       .then((data) => {
-        console.log("dataaa....", data);
         setBlogPost(data);
         setLoading(false);
       })
