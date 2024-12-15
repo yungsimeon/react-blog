@@ -6,6 +6,7 @@ export default function Navbar() {
   return (
     <nav className="bg-[#fff] 800 p-3 shadow-lg sticky z-10 top-0 ">
       <div className="container mx-auto flex justify-between items-center">
+
         <div>
           <Player
             autoplay
@@ -25,6 +26,7 @@ export default function Navbar() {
           >
             Home
           </NavLink>
+
 
           <NavLink
             to="/about"

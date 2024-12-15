@@ -3,6 +3,7 @@
     "id": 1,
     "title": "How to Learn React",
     "description": "A comprehensive guide to learning React.js.",
+
     "date": "Jul 24",
     "image": "https://images.unsplash.com/photo-1711054824441-064a99073a0b?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "content": "Sed viverra tristique odio ut euismod. Ut euismod eget magna ac porttitor. Phasellus nibh tortor, bibendum sed velit et, porttitor elementum tellus. Nullam ex lacus, iaculis ac turpis id, euismod cursus mi. Praesent in orci vitae metus tempus vehicula suscipit quis elit. Maecenas vitae enim non sem consectetur aliquam eu at dui. Pellentesque vitae tempor sem. Duis volutpat odio imperdiet porta facilisis. Aenean eu tortor eget massa efficitur elementum a eu augue. In hendrerit lorem ac ullamcorper laoreet. Donec laoreet metus purus, sit amet aliquet urna ullamcorper nec. Phasellus blandit, risus et accumsan mollis, nisi elit dictum libero, id posuere nulla arcu tincidunt massa. Nunc ornare, mauris at accumsan pretium, tellus diam volutpat urna, ut sagittis magna neque ut nunc. Integer tempor augue enim, ac lobortis massa faucibus quis. Aenean scelerisque posuere tortor, in.",
@@ -11,12 +12,14 @@
     "category": "Music",
     "comments": ["Nice read!", "Insightful post!"],
     "readingTime": "4 min"
+
   },
 
   {
     "id": 2,
     "title": "Understanding JavaScript Closures",
     "description": "An in-depth look at closures in JavaScript and their use cases.",
+
     "date": "Nov 20",
     "image": "https://images.unsplash.com/photo-1541514254856-8caa32916423?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "content": "<p>Closures are a fundamental concept in JavaScript that allow a function to access variables from its outer scope even after that function has finished executing.</p><p>Closures are commonly used in JavaScript for data encapsulation and creating private variables.</p><p>Understanding closures is crucial for mastering JavaScript and writing more efficient and maintainable code.</p>",
@@ -30,6 +33,7 @@
     "id": 3,
     "title": "CSS Grid Layout Basics",
     "description": "Learn the basics of CSS Grid Layout for creating responsive designs.",
+
     "date": "Feb 18",
     "image": "https://images.unsplash.com/photo-1518043129420-ed9d4efcdcc9?q=80&w=3040&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "content": "<p>CSS Grid Layout is a two-dimensional layout system for the web. It allows you to create complex and responsive grid-based layouts with ease.</p><p>The Grid Layout system provides a way to create rows and columns that adapt to different screen sizes and resolutions.</p><p>By mastering CSS Grid, you can build more flexible and scalable web designs.</p>",
@@ -51,5 +55,6 @@
     "category": "Movies",
     "comments": ["Nice read!", "Insightful post!"],
     "readingTime": "12 min"
+
   }
 ]

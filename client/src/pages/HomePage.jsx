@@ -1,27 +1,36 @@
 import { useState, useEffect } from "react";
-import blogData from "../assets/blog.json";
 import BlogList from "../components/BlogList";
 import CircularProgress from "@mui/joy/CircularProgress";
+import { fetchAllBlogPosts } from "../components/ApiQueries";
 
 export default function HomePage() {
   const [blogs, setBlogs] = useState([]);
-
   const [originalBlogs, setOriginalBlogs] = useState([]);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setBlogs(blogData);
-    setOriginalBlogs(blogData);
-    setIsLoading(false);
+    fetchAllBlogPosts()
+      .then((data) => {
+        setOriginalBlogs(data);
+        setBlogs(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch blog posts:", err);
+        setError("Failed to fetch blog posts.");
+        setIsLoading(false);
+      });
   }, []);
 
   const filterPosts = (category) => {
     if (category === "all") {
       setBlogs(originalBlogs);
     } else {
-      const filteredPosts = originalBlogs.filter(
-        (blog) => blog.category === category
-      );
+      const filteredPosts = originalBlogs.filter((blog) => {
+        const tags = blog.attributes.blogTag;
+        return tags.includes(category);
+      });
       setBlogs(filteredPosts);
     }
   };
@@ -29,6 +38,7 @@ export default function HomePage() {
   return (
     <div className="px-96 mt-20">
       <h1 className="text-center font-futura font-medium text-7xl">Blog</h1>
+
       {isLoading ? (
         <CircularProgress color="neutral" variant="plain" />
       ) : (

@@ -3,14 +3,16 @@ import BlogItem from "./BlogItem";
 
 export default function BlogList({ blogs }) {
   return (
-    <>
-      {blogs.map((blog) => {
-        return (
+    <div>
+      {blogs.length > 0 ? (
+        blogs.map((blog) => (
           <Link to={`/blog/${blog.id}`} key={blog.id}>
-            <BlogItem key={blog.id} blog={blog} />
+            <BlogItem blog={blog} />
           </Link>
-        );
-      })}
-    </>
+        ))
+      ) : (
+        <p>No blogs found.</p>
+      )}
+    </div>
   );
 }

@@ -1,70 +1,113 @@
 import { useParams } from "react-router-dom";
+import { fetchBlogPostById } from "../components/ApiQueries";
+import { useState, useEffect } from "react";
 import CommentForm from "../components/CommentForm";
-import { useState } from "react";
+import RelatedPosts from "../components/RelatedPosts";
 
-export default function BlogPostPage({ blogs }) {
+export default function BlogPostPage() {
   const { blogId } = useParams();
-  const blogPost = blogs.find((blog) => String(blog.id) === String(blogId));
-  const [comments, setComments] = useState([]);
-  const addComment = (comment, commentAuthor) => {
-    setComments([
-      ...comments,
-      { comment, commentAuthor, id: comments.length + 1 },
-    ]);
+  const [blogPost, setBlogPost] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const API_URL = "http://localhost:1337";
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
   };
 
-  if (!blogPost) {
-    return <div>Blog post not found.</div>;
-  }
+  useEffect(() => {
+    fetchBlogPostById(blogId)
+      .then((data) => {
+        setBlogPost(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Failed to fetch blog post.");
+        setLoading(false);
+      });
+  }, [blogId]);
+
+  const handleCommentAdded = () => {
+    // Optionally, re-fetch the blog post to update comments
+    fetchBlogPostById(blogId).then(setBlogPost);
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+  if (!blogPost) return <p>Blog post not found.</p>;
 
   return (
     <div className="h-full px-96 mt-40">
       <div className="flex gap-4 mb-8 items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden">
-          <img src={blogPost.authorIcon} />
+          {blogPost.attributes.blogIconImg && (
+            <img
+              src={`${API_URL}${blogPost.attributes.blogIconImg.data.attributes.url}`}
+              alt={blogPost.attributes.blogAuthor}
+            />
+          )}
         </div>
 
-        <p>{blogPost.author}</p>
+        <p>{blogPost.attributes.blogAuthor}</p>
         <div className="flex items-center gap-3">
           <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
-          <p>{blogPost.date}</p>
+
+          <p>{formatDate(blogPost.attributes.createdAt)}</p>
           <div className="w-1 h-1 bg-black rounded-full mb-1"></div>
-          <p>{blogPost.readingTime}</p>
+          <p>{blogPost.attributes.blogReadingTime}</p>
         </div>
       </div>
       <div className="mb-10">
         <h2 className="font-futura text-4xl font-bold mb-3">
-          {blogPost.title}
+          {blogPost.attributes.blogTitle}
         </h2>
-        <p className="text-2xl mb-4">{blogPost.description}</p>
+        <p className="text-2xl mb-4">{blogPost.attributes.blogDescription}</p>
       </div>
       <div className="w-full h-full mb-10">
-        <img
-          className="object-cover w-full h-full"
-          src={blogPost.image}
-          alt={blogPost.title}
-        />
+        {blogPost.attributes.blogImage && (
+          <img
+            src={`${API_URL}${blogPost.attributes.blogImage.data.attributes.url}`}
+            alt={blogPost.attributes.blogTitle}
+          />
+        )}
       </div>
       <div className="mb-10 pb-10 border-b border-gray-400">
-        <p className="text-lg">{blogPost.content}</p>
+        <p className="text-lg">
+          {blogPost.attributes.blogContent[0].children[0].text}
+        </p>
       </div>
 
       <div>
-        {comments.map((comment) => {
-          return (
+        <p className="text-xl font-semibold mb-10">
+          {blogPost.attributes.comments.data.length} comments
+        </p>
+        {blogPost.attributes.comments.data.length > 0 ? (
+          blogPost.attributes.comments.data.map((comment) => (
             <div
-              key={comment.id}
-              className="rounded-lg border border-dark_grey p-4 mb-4"
+              key={
+                comment.attributes.commentAuthor +
+                comment.attributes.commentCreatedAt
+              }
+              className="mb-10"
             >
-              <p className="text-gray-800 text-lg  font-medium mb-2">
-                {comment.comment}
+              <p>
+                {comment.attributes.commentContent} -{" "}
+                <span className="italic">
+                  {comment.attributes.commentAuthor}{" "}
+                </span>
               </p>
-              <p className="text-gray-600 text-sm">{comment.commentAuthor}</p>
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <p>No comments yet.</p>
+        )}
       </div>
-      <CommentForm addComment={addComment} />
+
+      <CommentForm blogId={blogId} onCommentAdded={handleCommentAdded} />
+
+      <RelatedPosts />
     </div>
   );
 }

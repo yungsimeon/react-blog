@@ -1,3 +1,4 @@
+
 import { Typography } from "@material-tailwind/react";
 import TeamList from "../components/TeamList";
 
@@ -9,7 +10,7 @@ export default function AboutPage({ members }) {
           <Typography
             variant="h1"
             color="blue-gray"
-            className="my-2 font-futura !text-2xl lg:!text-4xl"
+            className="my-2 mb-10 font-futura !text-2xl lg:!text-4xl"
           >
             About the project
           </Typography>
@@ -43,5 +44,6 @@ export default function AboutPage({ members }) {
         </div>
       </div>
     </section>
+
   );
 }
